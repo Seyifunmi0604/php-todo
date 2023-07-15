@@ -63,7 +63,7 @@ pipeline {
     }
      
     stage ('Upload Artifact to Artifactory') {
-      steps {
+    steps {
             script { 
                  def server = Artifactory.server 'artifactory-server'                 
                  def uploadSpec = """{
@@ -82,8 +82,9 @@ pipeline {
             }
         
     stage ('Deploy to Dev Environment') {
-    steps {
-    build job: 'proj14-ansible-config/main', parameters: [[$class: 'StringParameterValue', name: 'env', value: 'dev']], propagate: false, wait: true
+      steps {
+      build job: 'proj14-ansible-config/main', parameters: [[$class: 'StringParameterValue', name: 'env', value: 'dev']], propagate: false, wait: true
+
     }
   }
 
